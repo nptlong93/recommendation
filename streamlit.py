@@ -20,9 +20,6 @@ data2 = pd.read_csv("merge.csv", encoding='utf-8')
 # Optimize running model by using cache
 #@st.cache_resource
 #def run_model(data):
-    # 2. Data pre-processing
-    # 2.1. Create a new column name_description_wt
-data['name_description_wt'] = data['product_name'] + " " + data['description']
     # 2.2. Remove missing values
 data = data.reset_index(drop=True)
 tf = TfidfVectorizer(analyzer='word')
