@@ -32,7 +32,7 @@ data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
 #df = spark.read.csv('Products_ThoiTrangNam_rating_raw.csv', header=True, inferSchema=True, sep=r'\t')
 #Load models 
 with open("cosine_similarities.pkl", 'rb') as file:  
-    model = pickle.load(file, protocol=4)
+    model = pickle.load(file)
 
 # Load als_model folder
 #als_model = ALSModel.load("Model/als_model")
