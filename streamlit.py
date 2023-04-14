@@ -21,9 +21,9 @@ data2 = pd.read_csv("merge.csv", encoding='utf-8')
 #@st.cache_resource
 #def run_model(data):
     # 2.2. Remove missing values
-data = data.reset_index(drop=True)
+#data = data.reset_index(drop=True)
 tf = TfidfVectorizer(analyzer='word')
-data = data.dropna(subset=['name_description_wt']).reset_index(drop=True)
+#data = data.dropna(subset=['name_description_wt']).reset_index(drop=True)
 tfidf_matrix = tf.fit_transform(data.name_description_wt)
 model = cosine_similarity(tfidf_matrix, tfidf_matrix)
     #return model
