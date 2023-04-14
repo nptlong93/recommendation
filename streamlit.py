@@ -20,19 +20,19 @@ def load_data():
     return data, data2
 
 # Optimize running model by using cache
-@st.cache_resource
-def run_model(data):
+#@st.cache_resource
+#def run_model(data):
     # 2.2. Remove missing values
-    tf = TfidfVectorizer(analyzer='word')
-    tfidf_matrix = tf.fit_transform(data.name_description_wt)
-    model = cosine_similarity(tfidf_matrix, tfidf_matrix)
-    return model
+tf = TfidfVectorizer(analyzer='word')
+tfidf_matrix = tf.fit_transform(data.name_description_wt)
+model = cosine_similarity(tfidf_matrix, tfidf_matrix)
+    #return model
 
 #-------------
 # Load data
 data, data2 = load_data()
 # Run model
-model = run_model(data)
+#model = run_model(data)
 
 # GUI
 st.title("Data Science Project")
