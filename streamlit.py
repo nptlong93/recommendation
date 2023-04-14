@@ -8,7 +8,7 @@ from streamlit_option_menu import option_menu
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 import warnings
-warnings.filterwarnings(‘ignore’)
+warnings.filterwarnings("ignore")
 
 # Optimize loading data and model by using cache
 @st.cache_data
@@ -26,7 +26,7 @@ def run_model(data):
     data = data.reset_index(drop=True)
     tf = TfidfVectorizer(analyzer='word')
     #data = data.dropna(subset=['name_description_wt']).reset_index(drop=True)
-    tfidf_matrix = tf.fit_transform(data['name_description_wt'])
+    tfidf_matrix = tf.fit_transform(data["name_description_wt"])
     model = cosine_similarity(tfidf_matrix, tfidf_matrix)
     return model
 
