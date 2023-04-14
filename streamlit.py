@@ -15,6 +15,7 @@ warnings.filterwarnings("ignore")
 def load_data():
     # 1. Read data
     data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
+    print(df.columns)
     # Load merge.csv
     data2 = pd.read_csv("merge.csv", encoding='utf-8')
     return data, data2
