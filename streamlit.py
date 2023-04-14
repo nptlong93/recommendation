@@ -1,46 +1,42 @@
 import numpy as np
 import pandas as pd
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split  
-from sklearn.metrics import accuracy_score 
-from sklearn.metrics import confusion_matrix
-from sklearn. metrics import classification_report, roc_auc_score, roc_curve
-import pickle
 import streamlit as st
 import matplotlib.pyplot as plt
-from sklearn import metrics
 import seaborn as sns
 from streamlit_option_menu import option_menu
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 
-#import os
-#os.environ["JAVA_HOME"] = "C:\Program Files\Java\jdk-19"
-#os.environ["SPARK_HOME"] = "C:\spark-3.3.1-bin-hadoop3"
+# Optimize loading data and model by using cache
+@st.cache_data
+def load_data():
+    # 1. Read data
+    data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
+    # Load merge.csv
+    data2 = pd.read_csv("merge.csv", encoding='utf-8')
+    return data, data2
 
-#import findspark
-#findspark.init()
-#from pyspark.sql import SparkSession
-#from pyspark import SparkContext
-#from pyspark import SparkConf
-#from pyspark.ml.recommendation import ALSModel
-
-#spark = SparkSession.builder.appName("ALS").getOrCreate()
-
-
-#Read data
-data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
-#df = spark.read.csv('Products_ThoiTrangNam_rating_raw.csv', header=True, inferSchema=True, sep=r'\t')
-#Load models 
-with open("cosine_similarities.pkl", 'rb') as file:  
-    model = pickle.load(file)
-
-# Load als_model folder
-#als_model = ALSModel.load("Model/als_model")
-# Load merge.csv
-data2 = pd.read_csv("merge.csv", encoding='utf-8')
-
+# Optimize running model by using cache
+@st.cache_resource
+def run_model(data):
+    # 2. Data pre-processing
+    # 2.1. Create a new column name_description_wt
+    data['name_description_wt'] = data['product_name'] + " " + data['description']
+    # 2.2. Remove missing values
+    data = data.reset_index(drop=True)
+    tf = TfidfVectorizer(analyzer='word')
+    data = data.dropna(subset=['name_description_wt']).reset_index(drop=True)
+    tfidf_matrix = tf.fit_transform(data.name_description_wt)
+    model = cosine_similarity(tfidf_matrix, tfidf_matrix)
+    return model
 
 #-------------
+# Load data
+data, data2 = load_data()
+# Run model
+model = run_model(data)
+
 # GUI
 st.title("Data Science Project")
 st.write("## Content-based recommendation system for products")
