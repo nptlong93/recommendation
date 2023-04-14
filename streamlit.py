@@ -33,6 +33,7 @@ data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
 #Load models 
 with open("cosine_similarities.pkl", 'rb') as file:  
     model = pickle.load(file)
+
 # Load als_model folder
 #als_model = ALSModel.load("Model/als_model")
 # Load merge.csv
