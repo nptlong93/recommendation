@@ -7,6 +7,8 @@ import seaborn as sns
 from streamlit_option_menu import option_menu
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+import warnings
+warnings.filterwarnings(‘ignore’)
 
 # Optimize loading data and model by using cache
 @st.cache_data
