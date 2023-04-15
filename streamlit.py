@@ -17,6 +17,7 @@ def load_data():
     data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
     # Load merge.csv
     data2 = pd.read_csv("merge.csv", encoding='utf-8')
+    st.write(data.columns)
     return data, data2
 
 # Optimize running model by using cache
