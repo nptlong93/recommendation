@@ -8,6 +8,7 @@ from streamlit_option_menu import option_menu
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 import warnings
+#import PIL.Image as Image
 warnings.filterwarnings("ignore")
 
 # Optimize loading data and model by using cache
@@ -18,6 +19,9 @@ def load_data():
     
     # Load merge.csv
     data2 = pd.read_csv("merge.csv", encoding='utf-8')
+
+    # Load shopee_1.jpg
+    #image1 = Image.open("shopee_1.jpg")
 
     return data, data2
 
@@ -50,7 +54,7 @@ with st.sidebar:
     )
 if choice == 'Project Objective':    
     st.write("## Project Overview")
-    st.image("shopee_1.jpg", width=500)
+    st.image("https://golocad.com/wp-content/uploads/2022/11/shopee-logistics-engine.webp", width=500)
     st.write("This project is to build a recommendation system for Shopee.vn - an e-commerce website. The recommendation system will be based on the content of the product and the user's rating history. The recommendation system will be built using two methods: Content-based Filtering and Collaborative Filtering.")
 
     st.write("## 1. Content-based Filtering")
