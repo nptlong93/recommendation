@@ -15,10 +15,10 @@ warnings.filterwarnings("ignore")
 def load_data():
     # 1. Read data
     data = pd.read_csv("Products_ThoiTrangNam_clean.csv", encoding='utf-8')
-    data.columns
+    
     # Load merge.csv
     data2 = pd.read_csv("merge.csv", encoding='utf-8')
-    data2.columns
+
     return data, data2
 
 # Optimize running model by using cache
@@ -33,6 +33,8 @@ def run_model(data):
 #-------------
 # Load data
 data, data2 = load_data()
+data.columns
+data2.columns
 
 # Run model
 model = run_model(data)
