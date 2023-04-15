@@ -33,8 +33,7 @@ def run_model(data):
 #-------------
 # Load data
 data, data2 = load_data()
-data.columns
-data2.columns
+
 
 # Run model
 model = run_model(data)
