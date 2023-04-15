@@ -137,3 +137,7 @@ elif choice == 'Collaborative Filtering':
         with col2:
             # Show product name with bold font and link based on selected user_id
             st.write("Product name: [{}]({})".format(i, data2.iloc[idx]['link']))
+                        # Show product price based on selected user_id
+            st.write("Product price: {:,} VND".format(data2.iloc[idx]['price']))
+            # Show product rating based on selected user_id
+            st.write("Product rating: ", data2.iloc[idx]['rating'])
