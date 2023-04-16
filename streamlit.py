@@ -118,13 +118,18 @@ elif choice == 'Content-based Filtering':
             data[['image']] = data[['image']].astype(str)
             product_image = data.iloc[idx]['image']
             # Show product image
-            st.image(product_image, width=280)
-            # Show product name with bold font and link based on selected product
-            st.markdown(f"**[{product_name}]({data.iloc[idx]['product_url']})**")
-            # Show product price
-            st.write("Price: ", product_price)
-            # Show product rating
-            st.write("Rating: ", product_rating)
+            col1, col2 = st.columns(2)
+            with col1:
+                # Show product image
+                data[['image']] = data[['image']].astype(str)
+                st.image(product_image, width=200)
+            with col2:
+                # Show product name with big bold font and link
+                st.write("### [{}]({})".format(product_name, data.iloc[idx]['link']))
+                # Show product price
+                st.write("Product price: {:,} VND".format(product_price))
+                # Show product rating
+                st.write("Product rating: ", product_rating)
 
     
 
