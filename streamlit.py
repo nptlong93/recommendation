@@ -107,7 +107,7 @@ elif choice == 'Content-based Filtering':
     st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
     st.write("###### Price:", data['price'][data[data['image'] == selected_image].index[0]])
     st.write("###### Rating:", star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
-    st.write("###### Description:", data['description'][data[data['image'] == selected_image].index[0]])
+    #st.write("###### Description:", data['description'][data[data['image'] == selected_image].index[0]])
 
     # Show recommended products
     st.write("#### You might like: ")
