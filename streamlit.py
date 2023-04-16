@@ -98,6 +98,8 @@ elif choice == 'Content-based Filtering':
         product_image = data.iloc[idx]['image']
         # Create a seleted image
         selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name], use_container_width = False)
+        # Recommend more products:
+        st.write("## Recommended more products: ")
         # Get index of selected image
         selected_image_idx = data[data['image'] == selected_image].index[0]
         # Get list of similar products
@@ -116,8 +118,6 @@ elif choice == 'Content-based Filtering':
             product_rating_image = data.iloc[idx_image]['rating']
             # Get product image
             product_image_image = data.iloc[idx_image]['image']
-            # Recommend more products:
-            st.write("## Recommended products: ")
             # Show product image
             col1, col2 = st.columns(2)
             with col1:
