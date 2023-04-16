@@ -94,10 +94,13 @@ elif choice == 'Content-based Filtering':
         # Get product rating
         product_rating = data.iloc[idx]['rating']
         # Get product image
+        product_image_lst = []
         data[['image']] = data[['image']].astype(str)
-        product_image = data.iloc[idx]['image']
+        for k in data.iloc[idx]['image']:
+            product_image_lst.append(k)
+        #product_image = data.iloc[idx]['image']
         # Create a seleted image
-        selected_image = image_select(label= "Select image",images=[product_image,product_image], captions=[product_name,product_name], use_container_width = False)
+        selected_image = image_select(label= "Select image",images=[product_image_lst[k],product_image_lst[k+1]], captions=[product_name,product_name], use_container_width = False)
         # Get index of selected image
         selected_image_idx = data[data['image'] == selected_image].index[0]
         # Get list of similar products
