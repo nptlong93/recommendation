@@ -106,7 +106,7 @@ elif choice == 'Content-based Filtering':
     st.write("#### In this product:") 
     col1, col2 = st.columns(2)
     with col1:
-        st.image(selected_image, width=250)
+        st.image(selected_image, width=270)
     with col2:
         st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
         st.write("{:,} VND".format(data['price'][data[data['image'] == selected_image].index[0]]))
