@@ -87,20 +87,24 @@ elif choice == 'Content-based Filtering':
     lst = [i[0] for i in sorted_similar_products[1:6]]
     # Create a seleted image
     selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
-    # Get index of selected image
-    for i in range(len(lst)):
-        if lst[i] == selected_image:
-            idx = lst[i]
-    # Get lst of similar products of selected image
-    similar_products = list(enumerate(model[idx]))
-    # Sort list of similar products
-    sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
     # Show random 5 similar products
-    lst = [i[0] for i in sorted_similar_products[1:6]]
-    # Show recommended products
-    for i in lst:
-        st.write(data['product_name'][i])
-        st.image(data['image'][i], width=200)
+    lst_img = [data['image'][i] for i in lst]
+    lst_name = [data['product_name'][i] for i in lst]
+    lst_price = [data['price'][i] for i in lst]
+    lst_rating = [data['rating'][i] for i in lst]
+    lst_link = [data['link'][i] for i in lst]
+    for i in range(5):
+        col1, col2, col3, col4, col5 = st.beta_columns(5)
+        with col1:
+            st.image(lst_img[i], width=100)
+        with col2:
+            st.write(lst_name[i])
+        with col3:
+            st.write(lst_price[i])
+        with col4:
+            st.write(lst_rating[i])
+        with col5:
+            st.write(lst_link[i])
         
     # for i in sorted_similar_products[1:6]:
     #     # Get index of similar product
