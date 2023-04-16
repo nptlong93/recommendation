@@ -96,7 +96,7 @@ elif choice == 'Content-based Filtering':
         # Get product image
         product_image = data.iloc[idx]['image']
         # Create a seleted image
-        selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name] use_container_width = False)
+        selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name], use_container_width = False)
         # Get 5 more similar products based on selected_image
         if selected_image == product_image:
             # Align the product name and product price under the product image
