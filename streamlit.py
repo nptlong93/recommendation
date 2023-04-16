@@ -99,9 +99,9 @@ elif choice == 'Content-based Filtering':
     # Sort list of similar products
     sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
     # Show random 5 similar products
-    lst = [i[0] for i in sorted_similar_products[1:6]]
+    lst = [i[0] for i in sorted_similar_products[1:9]]
     # Create a seleted image
-    selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = True)
+    selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
     # Show the product info
     st.write("#### In this product:") 
     st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
