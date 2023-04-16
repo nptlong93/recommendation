@@ -109,8 +109,8 @@ elif choice == 'Content-based Filtering':
         st.image(selected_image, width=250)
     with col2:
         st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
-        st.write("###### Price:", data['price'][data[data['image'] == selected_image].index[0]])
-        st.write("###### Rating:", star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
+        st.write("{:,} VND".format(data['price'][data[data['image'] == selected_image].index[0]]))
+        st.write(star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
         #st.write("###### Description:", data['description'][data[data['image'] == selected_image].index[0]])
     # Show recommended products
     st.write("#### You might like: ")
