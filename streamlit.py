@@ -97,7 +97,7 @@ elif choice == 'Content-based Filtering':
         data[['image']] = data[['image']].astype(str)
         product_image = data.iloc[idx]['image']
         # Create a seleted image
-        selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name], use_container_width = False)
+        selected_image = image_select(label= "Select image",images=[product_image[i],product_image[i+1]], captions=[product_name[i],product_name[i+1]], use_container_width = False)
         st.write(str(selected_image)[:100])
         # Recommend more products:
         st.write("## Recommended more products: ")
