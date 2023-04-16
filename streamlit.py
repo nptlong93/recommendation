@@ -122,15 +122,15 @@ elif choice == 'Content-based Filtering':
                 if rating == 5:
                     return "★★★★★"
                 elif rating == 4:
-                    return "★★★★☆"
+                    return "★★★★"
                 elif rating == 3:
-                    return "★★★☆☆"
+                    return "★★★"
                 elif rating == 2:
-                    return "★★☆☆☆"
+                    return "★★"
                 elif rating == 1:
-                    return "★☆☆☆☆"
+                    return "★"
                 else:
-                    return "☆☆☆☆☆"
+                    return "☆"
             # Show star rating
             st.write(star_rating(product_rating))
     # for i in sorted_similar_products[1:6]:
