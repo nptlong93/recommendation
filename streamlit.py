@@ -99,7 +99,7 @@ elif choice == 'Content-based Filtering':
         # Create a seleted image
         selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name], use_container_width = False)
         # Get index of selected image
-        selected_image_idx = selected_image.index(product_image)
+        selected_image_idx = data[data['image'] == selected_image].index[0]
         # Get list of similar products
         similar_products_image = list(enumerate(model[selected_image_idx]))
         # Sort list of similar products
