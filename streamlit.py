@@ -98,19 +98,29 @@ elif choice == 'Content-based Filtering':
         # Create a seleted image
         selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name], use_container_width = False)
         # Get 5 more similar products based on selected_image
-        if selected_image == product_image:
+        for k in selected_image:
+            # Get index of similar product
+            idx = k[0]
+            # Get product name
+            product_name = data.iloc[idx]['product_name']
+            # Get product price
+            product_price = data.iloc[idx]['price']
+            # Get product rating
+            product_rating = data.iloc[idx]['rating']
+            # Get product image
+            product_image = data.iloc[idx]['image']
             # Align the product name and product price under the product image
             col1, col2 = st.columns(2)
             with col1:
                 # Show product image
                 st.image(product_image, width=200)
             with col2:
-                # Show product name
-                st.write("## Product name: ", product_name)
+                # Show product name with bold font and link
+                st.write("Product name: [{}]({})".format(product_name, data.iloc[idx]['link']))
                 # Show product price
-                st.write("## Product price: ", product_price)
+                st.write("Product price: ", product_price)
                 # Show product rating
-                st.write("## Product rating: ", product_rating)
+                st.write("Product rating: ", product_rating)
 
 
 elif choice == 'Collaborative Filtering':
