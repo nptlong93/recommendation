@@ -90,7 +90,7 @@ elif choice == 'Content-based Filtering':
     # Recommend more products:
     st.write("## Recommended more products: ")
     # Get index of product for selected image
-    idx_img = data[data['product_name'] == selected_image].index[0]
+    idx_img = data[data['product_name'] == selected_image].index[i]
     # Get list of similar products
     similar_products_img = list(enumerate(model[idx_img]))
     # Sort list of similar products
