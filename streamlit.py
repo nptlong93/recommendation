@@ -90,9 +90,9 @@ elif choice == 'Content-based Filtering':
     # Show the product info
     st.write("#### In this product:") 
     st.write(data['product_name'][data[data['image'] == selected_image].index[0]])
-    st.write("#### Price:", data['price'][data[data['image'] == selected_image].index[0]])
-    st.write("#### Rating:", data['rating'][data[data['image'] == selected_image].index[0]])
-    st.write("#### Description:", data['description'][data[data['image'] == selected_image].index[0]])
+    st.write("Price:", data['price'][data[data['image'] == selected_image].index[0]])
+    st.write("Rating:", data['rating'][data[data['image'] == selected_image].index[0]])
+    st.write("Description:", data['description'][data[data['image'] == selected_image].index[0]])
 
     # Show recommended products
     st.write("#### Recommended more products: ")
