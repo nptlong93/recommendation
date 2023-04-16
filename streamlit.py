@@ -104,7 +104,7 @@ elif choice == 'Content-based Filtering':
             else:
                 st.image(data.iloc[idx]['image'], width=280)
                 for image in data.iloc[idx]['image']:
-                    img = image_select(label='Select an image', options=['image'])
+                    img = image_select(label='Select an image')
                     st.image(img, width=280)
         with col2:
             # Show product name with big bold font and link
