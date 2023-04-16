@@ -116,9 +116,23 @@ elif choice == 'Content-based Filtering':
             # Show product name with big bold font and link
             st.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
             # Show product price
-            st.write("Product price: {:,} VND".format(product_price))
-            # Show product rating
-            st.write("Product rating: ", product_rating)
+            st.write("{:,} VND".format(product_price))
+            # Def star rating
+            def star_rating(rating):
+                if rating == 5:
+                    return "★★★★★"
+                elif rating == 4:
+                    return "★★★★☆"
+                elif rating == 3:
+                    return "★★★☆☆"
+                elif rating == 2:
+                    return "★★☆☆☆"
+                elif rating == 1:
+                    return "★☆☆☆☆"
+                else:
+                    return "☆☆☆☆☆"
+            # Show star rating
+            st.write(star_rating(product_rating))
     # for i in sorted_similar_products[1:6]:
     #     # Get index of similar product
     #     idx = i[0]
