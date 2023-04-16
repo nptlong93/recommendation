@@ -87,6 +87,11 @@ elif choice == 'Content-based Filtering':
     lst = [i[0] for i in sorted_similar_products[1:6]]
     # Create a seleted image
     selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
+    # Get list of similar products based on selected image
+    idx = data[data['image'] == selected_image].index[0]
+    similar_products = list(enumerate(model[idx]))
+    # Sort list of similar products
+    sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
     # Show random 5 similar products
     for i in sorted_similar_products[1:6]:
         # Get index of similar product
