@@ -108,10 +108,10 @@ elif choice == 'Content-based Filtering':
         data[['image']] = data[['image']].astype(str)
         product_image = data.iloc[idx]['image']
         # Align 2 columns
-        col1, col2 = st.columns(3)
+        col1, col2 = st.columns(2)
         with col1:
             # Col 1 show product image
-            st.image(product_image, width= 150 )
+            st.image(product_image, width= 175 )
         with col2:
             # Show product name with big bold font and link
             st.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
