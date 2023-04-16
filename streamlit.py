@@ -101,7 +101,7 @@ elif choice == 'Content-based Filtering':
         # Get index of selected image
         selected_image_idx = selected_image.index(product_image)
         # Get selected image
-        selected_image = selected_image[selected_image_idx]
+        selected_image_image = selected_image[selected_image_idx]
         # Get selected image name
         selected_image_name = product_name
         # Get selected image price
@@ -114,7 +114,8 @@ elif choice == 'Content-based Filtering':
         col1, col2 = st.columns(2)
         with col1:
             # Show product image
-            st.image(selected_image, width=280)
+            data[['image']] = data[['image']].astype(str)
+            st.image(selected_image_image, width=200)
         with col2:
             # Show product name with bold font and link
             st.write("Product name: [{}]({})".format(selected_image_name, selected_image_link))
