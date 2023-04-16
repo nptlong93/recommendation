@@ -40,6 +40,21 @@ def run_model(data):
 data, data2 = load_data()
 data[['image']] = data[['image']].astype(str)
 
+# Def star rating
+def star_rating(rating):
+    if rating == 5:
+        return "★★★★★"
+    elif rating == 4:
+        return "★★★★"
+    elif rating == 3:
+        return "★★★"
+    elif rating == 2:
+        return "★★"
+    elif rating == 1:
+        return "★"
+    else:
+        return "☆"
+
 # Run model
 model = run_model(data)
 
@@ -91,7 +106,7 @@ elif choice == 'Content-based Filtering':
     st.write("#### In this product:") 
     st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
     st.write("###### Price:", data['price'][data[data['image'] == selected_image].index[0]])
-    st.write("###### Rating:", data['rating'][data[data['image'] == selected_image].index[0]])
+    st.write("###### Rating:", star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
     st.write("###### Description:", data['description'][data[data['image'] == selected_image].index[0]])
 
     # Show recommended products
@@ -124,20 +139,6 @@ elif choice == 'Content-based Filtering':
             st.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
             # Show product price
             st.write("{:,} VND".format(product_price))
-            # Def star rating
-            def star_rating(rating):
-                if rating == 5:
-                    return "★★★★★"
-                elif rating == 4:
-                    return "★★★★"
-                elif rating == 3:
-                    return "★★★"
-                elif rating == 2:
-                    return "★★"
-                elif rating == 1:
-                    return "★"
-                else:
-                    return "☆"
             # Show star rating
             st.write(star_rating(product_rating))
     # for i in sorted_similar_products[1:6]:
