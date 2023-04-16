@@ -111,14 +111,6 @@ elif choice == 'Content-based Filtering':
                 st.write("## Product price: ", product_price)
                 # Show product rating
                 st.write("## Product rating: ", product_rating)
-                # Show product image
-                st.image(product_image, width=200)
-                # Show product name
-                st.write("## Product name: ", product_name)
-                # Show product price
-                st.write("## Product price: ", product_price)
-                # Show product rating
-                st.write("## Product rating: ", product_rating)
 
 
 elif choice == 'Collaborative Filtering':
