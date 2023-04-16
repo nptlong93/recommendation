@@ -125,7 +125,7 @@ elif choice == 'Content-based Filtering':
                 st.image(product_image_image, width=200)
             with col2:
                 # Show product name with big bold font and link
-                st.write("### [{}]({})".format(product_name_image, data.iloc[idx]['link']))
+                st.write("[{}]({})".format(product_name_image, data.iloc[idx]['link']))
                 # Show product price
                 st.write("Product price: {:,} VND".format(product_price_image))
                 # Show product rating
