@@ -101,35 +101,33 @@ elif choice == 'Content-based Filtering':
         # Get index of selected image
         selected_image_idx = selected_image.index(product_image)
         # Get list of similar products
-        similar_products = list(enumerate(model[selected_image_idx]))
+        similar_products_image = list(enumerate(model[selected_image_idx]))
         # Sort list of similar products
-        sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
+        sorted_similar_products_image = sorted(similar_products_image, key=lambda x: x[1], reverse=True)
         # Show random 5 similar products
-        for i in sorted_similar_products[1:6]:
+        for i in sorted_similar_products_image[1:6]:
             # Get index of similar product
-            idx = i[0]
+            idx_image = i[0]
             # Get product name   
-            product_name = data.iloc[idx]['product_name']
+            product_name_image = data.iloc[idx_image]['product_name']
             # Get product price
-            product_price = data.iloc[idx]['price']
+            product_price_image = data.iloc[idx_image]['price']
             # Get product rating
-            product_rating = data.iloc[idx]['rating']
+            product_rating_image = data.iloc[idx_image]['rating']
             # Get product image
-            data[['image']] = data[['image']].astype(str)
-            product_image = data.iloc[idx]['image']
+            product_image_image = data.iloc[idx_image]['image']
             # Show product image
             col1, col2 = st.columns(2)
             with col1:
                 # Show product image
-                data[['image']] = data[['image']].astype(str)
-                st.image(product_image, width=200)
+                st.image(product_image_image, width=200)
             with col2:
                 # Show product name with big bold font and link
-                st.write("### [{}]({})".format(product_name, data.iloc[idx]['link']))
+                st.write("### [{}]({})".format(product_name_image, data.iloc[idx]['link']))
                 # Show product price
-                st.write("Product price: {:,} VND".format(product_price))
+                st.write("Product price: {:,} VND".format(product_price_image))
                 # Show product rating
-                st.write("Product rating: ", product_rating)
+                st.write("Product rating: ", product_rating_image)
 
     
 
