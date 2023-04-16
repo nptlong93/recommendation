@@ -7,6 +7,7 @@ import seaborn as sns
 from streamlit_option_menu import option_menu
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+from streamlit_image_select import image_select
 import warnings
 #import PIL.Image as Image
 warnings.filterwarnings("ignore")
@@ -71,22 +72,6 @@ if choice == 'Project Objective':
 
 elif choice == 'Content-based Filtering':
     st.subheader("Content-based Filtering")
-    # # Show product name input
-    # productn = data['product_name']
-    # def search_products(query):
-    #     results = [product for product in productn if query.lower() in product.lower()]
-    #     return results
-    # search = st.text_input('Search for a product')
-    # # if no product is found, show error message
-    # if not search:
-    #     st.error("Please enter a product in a category")
-    # else:
-    #     # if no product in suggestions, show error message
-    #     suggestions = search_products(search)
-    #     if not suggestions:
-    #         # Show error message
-    #         st.error("Product name is not in dataset")
-    #     else:
     selected_product = st.selectbox('Select a product', data['product_name'])
     # Show product name
     st.write("## Product name: ", selected_product)
@@ -118,6 +103,9 @@ elif choice == 'Content-based Filtering':
                 st.error("Product image is not available")
             else:
                 st.image(data.iloc[idx]['image'], width=280)
+                for image in data.iloc[idx]['image']:
+                    img = image_select(label='Select an image', options=['image'])
+                    st.image(img, width=280)
         with col2:
             # Show product name with big bold font and link
             st.write("### [{}]({})".format(product_name, data.iloc[idx]['link']))
@@ -125,6 +113,7 @@ elif choice == 'Content-based Filtering':
             st.write("Product price: {:,} VND".format(product_price))
             # Show product rating
             st.write("Product rating: ", product_rating)
+
                 
 
 elif choice == 'Collaborative Filtering':
