@@ -96,7 +96,7 @@ elif choice == 'Content-based Filtering':
         # Get product image
         product_image = data.iloc[idx]['image']
         # Create a seleted image
-        selected_image = image_select(label="Selected Image", images=[product_image[0],product_image[1]], captions=[product_name[0],product_name[1]], use_container_width = True)
+        selected_image = image_select(label="Selected Image", images=[product_image], captions=[product_name], use_container_width = False)
 
 
 
