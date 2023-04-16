@@ -98,14 +98,7 @@ elif choice == 'Content-based Filtering':
         with col1:
             # Show product image
             data[['image']] = data[['image']].astype(str)
-            # If product image is null, show error message
-            if data.iloc[idx]['image'] == 'nan':
-                st.error("Product image is not available")
-            else:
-                st.image(data.iloc[idx]['image'], width=280)
-                for image in data.iloc[idx]['image']:
-                    img = image_select(label='Select an image', images=data.iloc[idx]['image'])
-                    st.image(img, width=280)
+            st.image(image_select(data.iloc[idx]['image'], width=280))
         with col2:
             # Show product name with big bold font and link
             st.write("### [{}]({})".format(product_name, data.iloc[idx]['link']))
