@@ -103,11 +103,11 @@ elif choice == 'Content-based Filtering':
     # Create a seleted image
     selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
     # Show the product info
+    st.write("#### In this product:") 
     col1, col2 = st.columns(2)
     with col1:
-        st.image(selected_image, width=300)
+        st.image(selected_image, width=170)
     with col2:
-        st.write("#### In this product:") 
         st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
         st.write("###### Price:", data['price'][data[data['image'] == selected_image].index[0]])
         st.write("###### Rating:", star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
