@@ -104,7 +104,7 @@ elif choice == 'Content-based Filtering':
     selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
     # Show the product info
     st.write("#### In this product:") 
-    col1, col2 = st.columns(2, gap="0")
+    col1, col2 = st.columns(2)
     with col1:
         st.image(selected_image, width=270)
     with col2:
@@ -133,7 +133,7 @@ elif choice == 'Content-based Filtering':
         data[['image']] = data[['image']].astype(str)
         product_image = data.iloc[idx]['image']
         # Align 2 columns
-        col1, col2 = st.columns(2, gap="0")
+        col1, col2 = st.columns(2)
         with col1:
             # Col 1 show product image
             st.image(product_image, width= 175 )
