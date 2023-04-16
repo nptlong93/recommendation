@@ -89,7 +89,7 @@ elif choice == 'Content-based Filtering':
     st.subheader("Content-based Filtering")
     selected_product = st.selectbox('Select a product', data['product_name'])
     # Show product name
-    st.write(selected_product)
+    st.write("### Your choice:",selected_product)
     # Show recommended products
     st.write("## Recommended products: ")
     # Get index of product
