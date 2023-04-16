@@ -88,7 +88,8 @@ elif choice == 'Content-based Filtering':
     # Create a seleted image
     selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
     # Show the product info
-    st.write("#### In this product:", data['product_name'][data[data['image'] == selected_image].index[0]])
+    st.write("#### In this product:") 
+    st.write(data['product_name'][data[data['image'] == selected_image].index[0]])
     st.write("#### Price:", data['price'][data[data['image'] == selected_image].index[0]])
     st.write("#### Rating:", data['rating'][data[data['image'] == selected_image].index[0]])
     st.write("#### Description:", data['description'][data[data['image'] == selected_image].index[0]])
