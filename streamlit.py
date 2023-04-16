@@ -98,7 +98,7 @@ elif choice == 'Content-based Filtering':
         # Create a seleted image
         selected_image = image_select(label= "Select image",images=[product_image], captions=[product_name], use_container_width = False)
         # Get 5 more similar products based on selected_image
-        for k in selected_image:
+        for k in len(selected_image):
             # Get index of similar product
             idx = k[0]
             # Get product name
