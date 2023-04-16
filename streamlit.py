@@ -98,7 +98,7 @@ elif choice == 'Content-based Filtering':
         with col1:
             # Show product image
             data[['image']] = data[['image']].astype(str)
-            st.image(image_select(data.iloc[idx]['image']))
+            selected_image = image_select(label='Select an image', images=data.iloc[idx]['image'], captions=data.iloc[idx]['product_name'])
         with col2:
             # Show product name with big bold font and link
             st.write("### [{}]({})".format(product_name, data.iloc[idx]['link']))
