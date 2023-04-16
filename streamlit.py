@@ -109,16 +109,16 @@ elif choice == 'Content-based Filtering':
         product_image = data.iloc[idx]['image']
         # Align 2 columns
         col1, col2 = st.columns(2)
-        # Col 1 show product image
-        col1.image(product_image)
-        # Col 2 show product name, price, rating
-        # Show product name
-        col2.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
-        # Show product price
-        col2.write(" Product price: ", product_price)
-        # Show product rating
-        col2.write(" Product rating: ", product_rating)
-
+        with col1:
+            # Col 1 show product image
+            st.image(product_image)
+        with col2:
+            # Show product name with big bold font and link
+            st.write("[{}]({})".format(product_name_image, data.iloc[idx]['link']))
+            # Show product price
+            st.write("Product price: {:,} VND".format(product_price_image))
+            # Show product rating
+            st.write("Product rating: ", product_rating_image)
     # for i in sorted_similar_products[1:6]:
     #     # Get index of similar product
     #     idx = i[0]
