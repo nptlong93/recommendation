@@ -91,7 +91,7 @@ elif choice == 'Content-based Filtering':
     # Show product name
     st.write("### Your choice:",selected_product)
     # Show recommended products
-    st.write("## Recommended products: ")
+    st.write("#### Recommended products: ")
     # Get index of product
     idx = data[data['product_name'] == selected_product].index[0]
     # Get list of similar products
@@ -101,7 +101,7 @@ elif choice == 'Content-based Filtering':
     # Show random 5 similar products
     lst = [i[0] for i in sorted_similar_products[1:6]]
     # Create a seleted image
-    selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
+    selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = True)
     # Show the product info
     st.write("#### In this product:") 
     st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
