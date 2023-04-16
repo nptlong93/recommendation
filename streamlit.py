@@ -38,7 +38,7 @@ def run_model(data):
 #-------------
 # Load data
 data, data2 = load_data()
-
+data[['image']] = data[['image']].astype(str)
 
 # Run model
 model = run_model(data)
@@ -88,24 +88,27 @@ elif choice == 'Content-based Filtering':
     # Create a seleted image
     selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
     # Show random 5 similar products
-    lst_img = [data['image'][i] for i in lst]
-    lst_name = [data['product_name'][i] for i in lst]
-    lst_price = [data['price'][i] for i in lst]
-    lst_rating = [data['rating'][i] for i in lst]
-    lst_link = [data['link'][i] for i in lst]
-    for i in range(5):
-        col1, col2, col3, col4, col5 = st.beta_columns(5)
-        with col1:
-            st.image(lst_img[i], width=100)
-        with col2:
-            st.write(lst_name[i])
-        with col3:
-            st.write(lst_price[i])
-        with col4:
-            st.write(lst_rating[i])
-        with col5:
-            st.write(lst_link[i])
-        
+    for i in sorted_similar_products[1:6]:
+        # Get index of similar product
+        idx = i[0]
+        # Get product name   
+        product_name = data.iloc[idx]['product_name']
+        # Get product price
+        product_price = data.iloc[idx]['price']
+        # Get product rating
+        product_rating = data.iloc[idx]['rating']
+        # Get product image
+        data[['image']] = data[['image']].astype(str)
+        product_image = data.iloc[idx]['image']
+        # Show product name
+        st.write("### Product name: ", product_name)
+        # Show product price
+        st.write("### Product price: ", product_price)
+        # Show product rating
+        st.write("### Product rating: ", product_rating)
+        # Show product image
+        st.image(product_image, width=200)
+
     # for i in sorted_similar_products[1:6]:
     #     # Get index of similar product
     #     idx = i[0]
