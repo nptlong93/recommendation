@@ -96,19 +96,8 @@ elif choice == 'Content-based Filtering':
         # Get product image
         product_image = data.iloc[idx]['image']
         # Create a seleted image
-        selected_image = image_select(label="Selected Image", images=[product_image], captions=[product_name], use_container_width = True)
-        # Align the product name and product price under the product image
-        col1, col2 = st.columns(5)
-        with col1:
-            # Show product name
-            st.write(product_name)
-        with col2:
-            # Show product price
-            st.write(product_price)
-            # Show product rating
-            st.write(product_rating)
-            # Show product image
-            st.image(selected_image, width=280)
+        selected_image = image_select(label="Selected Image", images=[product_image,product_image,product_image,product_image], captions=[product_name], use_container_width = True)
+
 
 
                 
