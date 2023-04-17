@@ -152,11 +152,14 @@ elif choice == 'Collaborative Filtering':
     def search_user(query):
         results = [user for user in usern if query.lower() in user.lower()]
         return results
-    search = st.text_input('Search for a product')
+    search = st.text_input('Username: ', 'Enter your username')
+    textb = st.text_input('Password: ')
     # if no user is found, show error message
     if not search:
         st.error("Your username is not correct. Please try again")
     else:
+        # Show success message
+        st.success("Successfully logged in")
         # Show user_id
         st.write("## User_id: ", search)
         # Show product_name based on selected user_id
