@@ -161,7 +161,7 @@ elif choice == 'Collaborative Filtering':
         # Show success message
         st.success("Successfully logged in")
         # Show user_id
-        st.write("## User_id: ", search)
+        st.write("## User_id: ".format(data2['user_id'][data2['user'] == search].iloc[0]))
         # Show product_name based on selected user_id
         st.write("## Product_name: ")
         # Get list of product_name based on selected user_id
