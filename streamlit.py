@@ -154,6 +154,11 @@ elif choice == 'Collaborative Filtering':
         return results
     search = st.text_input('Username: ', max_chars=100)
     textb = st.text_input('Password: ', max_chars=100)
+    # Create a button
+    button = st.button('Login')
+    # If button is clicked, search for user
+    if button:
+        search = search_user(search)
     # if no user is found, show error message
     if not search:
         st.error("Your username is not correct. Please try again")
