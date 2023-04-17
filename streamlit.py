@@ -141,7 +141,7 @@ elif choice == 'Content-based Filtering':
             # Show product name with big bold font and link
             st.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
             # Show product price
-            st.write("{:,} VND".format(product_price))
+            st.write("{:.} VND".format(product_price))
             # Show star rating
             st.write(star_rating(product_rating))
 
@@ -188,46 +188,7 @@ elif choice == 'Collaborative Filtering':
                     # Show product name with big bold font and link
                     st.write("[{}]({})".format(i, data2.iloc[idx]['link']))
                     # Show product price
-                    #st.write("{:,} VND".format(data2.iloc[idx]['price']))
+                    st.write("{:.} VND".format(data2.iloc[idx]['price']))
                     # Show star rating
                     st.write(star_rating(data2.iloc[idx]['rating']))
-                    # Show product description
-                    #st.write("###### Description:", data2.iloc[idx]['description'])
 
-
-
-
-
-
-
-
-
-
-
-
-    # # Select user_id
-    # user_id = st.selectbox('Select a user_id', data2['user_id'].unique())
-    # # Show user_id
-    # st.write("## User_id: ", user_id)
-    # # Show product_name based on selected user_id
-    # st.write("## Product_name: ")
-    # # Get list of product_name based on selected user_id
-    # product_name = data2[data2['user_id'] == user_id]['product_name'].unique()
-    # # Align the product name and product price under the product image
-    # for i in product_name:
-    #     # Get index of product
-    #     idx = data2[data2['product_name'] == i].index[0]
-    #     col1, col2 = st.columns(2)
-    #     with col1:
-    #         # Show product image
-    #         data2[['image']] = data2[['image']].astype(str)
-    #         # If product image is null, show error message
-    #         if data2.iloc[idx]['image'] == 'nan':
-    #             st.error("Product image is not available")
-    #         else:
-    #             st.image(data2.iloc[idx]['image'], width=280)
-    #     with col2:
-    #         # Show product name with bold font and link based on selected user_id
-    #         st.write("Product name: [{}]({})".format(i, data2.iloc[idx]['link']))
-    #         # Show product rating based on selected user_id
-    #         st.write("Product rating: ", data2.iloc[idx]['rating'])
