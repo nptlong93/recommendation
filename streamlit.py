@@ -148,7 +148,7 @@ elif choice == 'Content-based Filtering':
 elif choice == 'Collaborative Filtering':
     st.subheader("Collaborative Filtering")
     # Search based on user input 
-    usern = data2['user']
+    usern = data2['user'].unique()
     def search_user(query):
         results = [user for user in usern if query.lower() in user.lower()]
         return results
@@ -166,11 +166,11 @@ elif choice == 'Collaborative Filtering':
             # Show success message
             st.success("Successfully logged in")
             # Show user_id
-            st.write("### Welcome,".format(search))
+            st.write("### Welcome,",search)
             # Show product_name based on selected user_id
             st.write("### Product_name: ")
             # Get list of product_name based on user in search
-            product_name = data2[data2['user'] == search]['product_name'].unique()                     
+            product_name = data2[data2['user'] == ]['product_name'].unique()                     
             # Align the product name and product price under the product image
             for i in product_name:
                 # Get index of product
