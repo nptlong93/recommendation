@@ -161,9 +161,9 @@ elif choice == 'Collaborative Filtering':
         # Show success message
         st.success("Successfully logged in")
         # Show user_id
-        st.write("## User_id: ".format(data2['user_id'][data2['user'] == search].iloc[0]))
+        st.write("### Welcome,".format(search))
         # Show product_name based on selected user_id
-        st.write("## Product_name: ")
+        st.write("### Product_name: ")
         # Get list of product_name based on selected user_id
         product_name = data2[data2['user'] == search]['product_name'].unique()
         # Align the product name and product price under the product image
