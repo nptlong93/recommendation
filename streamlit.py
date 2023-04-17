@@ -153,7 +153,7 @@ elif choice == 'Collaborative Filtering':
         results = [user for user in usern if query.lower() in user.lower()]
         return results
     search = st.text_input('Username: ', max_chars=100)
-    #textb = st.text_input('Password: ')
+    textb = st.text_input('Password: ', max_chars=100)
     # if no user is found, show error message
     if not search:
         st.error("Your username is not correct. Please try again")
