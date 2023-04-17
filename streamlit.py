@@ -160,7 +160,7 @@ elif choice == 'Collaborative Filtering':
     if button:
         search1 = search_user(search)
     # if no user is found, show error message
-        if not search:
+        if not search1:
             st.error("Your username is not correct. Please try again")
         else:
             # Show success message
