@@ -152,8 +152,8 @@ elif choice == 'Collaborative Filtering':
     def search_user(query):
         results = [user for user in usern if query.lower() in user.lower()]
         return results
-    search = st.text_input('Username: ', max_chars=100)
-    textb = st.text_input('Password: ', max_chars=100)
+    search = st.text_input('Username: ')
+    textb = st.text_input('Password: ')
     # Create a button
     button = st.button('Login')
     # If button is clicked, search for user
