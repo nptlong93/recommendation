@@ -184,7 +184,7 @@ elif choice == 'Collaborative Filtering':
                 # Show star rating
                 st.write(star_rating(data2.iloc[idx]['rating']))
                 # Show product description
-                st.write("###### Description:", data2.iloc[idx]['description'])
+                #st.write("###### Description:", data2.iloc[idx]['description'])
 
 
 
