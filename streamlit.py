@@ -147,7 +147,44 @@ elif choice == 'Content-based Filtering':
 
 elif choice == 'Collaborative Filtering':
     st.subheader("Collaborative Filtering")
-    
+    # Search based on user input 
+    usern = data2['user']
+    def search_user(query):
+        results = [user for user in usern if query.lower() in user.lower()]
+        return results
+    search = st.text_input('Search for a product')
+    # if no user is found, show error message
+    if not search:
+        st.error("Your username is not correct. Please try again")
+    else:
+        # Show user_id
+        st.write("## User_id: ", search)
+        # Show product_name based on selected user_id
+        st.write("## Product_name: ")
+        # Get list of product_name based on selected user_id
+        product_name = data2[data2['user'] == search]['product_name'].unique()
+        # Align the product name and product price under the product image
+        for i in product_name:
+            # Get index of product
+            idx = data2[data2['product_name'] == i].index[0]
+            col1, col2 = st.columns(2)
+            with col1:
+                # Show product image
+                data2[['image']] = data2[['image']].astype(str)
+                # If product image is null, show error message
+                if data2.iloc[idx]['image'] == 'nan':
+                    st.error("Product image is not available")
+                else:
+                    st.image(data2.iloc[idx]['image'], width= 175)
+            with col2:
+                # Show product name with big bold font and link
+                st.write("[{}]({})".format(i, data2.iloc[idx]['link']))
+                # Show product price
+                st.write("{:,} VND".format(data2.iloc[idx]['price']))
+                # Show star rating
+                st.write(star_rating(data2.iloc[idx]['rating']))
+                # Show product description
+                st.write("###### Description:", data2.iloc[idx]['description'])
 
 
 
