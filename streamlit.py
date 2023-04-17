@@ -170,10 +170,7 @@ elif choice == 'Collaborative Filtering':
             # Show product_name based on selected user_id
             st.write("### Your purchase history: ")
             # Get list of product_name based on selected user_id
-            product_name = data2[data2['user_id'] == search]['product_name'].unique()
-            # Align the product name and product price under the product image
-
-
+            product_name = data2[data2['user'] == search]['product_name'].unique()
             # Align the product name and product price under the product image
             for i in product_name:
                 # Get index of product
