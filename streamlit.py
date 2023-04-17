@@ -180,7 +180,7 @@ elif choice == 'Collaborative Filtering':
                 # Show product name with big bold font and link
                 st.write("[{}]({})".format(i, data2.iloc[idx]['link']))
                 # Show product price
-                st.write("{:,} VND".format(data2.iloc[idx]['price']))
+                #st.write("{:,} VND".format(data2.iloc[idx]['price']))
                 # Show star rating
                 st.write(star_rating(data2.iloc[idx]['rating']))
                 # Show product description
