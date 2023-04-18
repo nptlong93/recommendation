@@ -72,9 +72,23 @@ if choice == 'Project Overview':
     st.write("### Project Objective")
     st.image("https://golocad.com/wp-content/uploads/2022/11/shopee-logistics-engine.webp", width=650)
     st.write("This project is to build a recommendation system for Shopee.vn, an e-commerce website. The recommendation system will be based on the content of the product and the user's rating history.")
-    st.write("The recommendation system will be built using two methods:")
-    st.write("1. Content-based Filtering: is a recommender system algorithm that recommends items to users based on their similarity to the previously searched items.")
-    st.write("2. Collaborative Filtering: is a recommender system algorithm that recommends items to users based on the preferences and behaviors of other users. The algorithm identifies users who have similar preferences and behaviors and recommends items that these users have consumed or rated highly.")
+    st.write("The recommendation system will be built using two methods: Content-based Filtering and Collaborative Filtering.")
+
+    st.write("### Case 01: Content-based Filtering")
+    st.write("#### Understand the Dataset")
+    st.write("The data used in this project is the product data of Shopee.vn. The data contains 4,000 products with 8 attributes: product_id, product_name, price, rating, link, category, image, description.")
+    st.write("The data is collected from the Shopee.vn. The data is then cleaned and preprocessed using the Python library Pandas, underthesea")
+    
+    st.write("#### Preprocessing data")
+    st.write("The data is then cleaned and preprocessed using the Python library Pandas, underthesea")
+
+    st.write("#### Algorithms")
+    st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=650)
+
+    st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
+
+    st.write("2. Collaborative Filtering: recommends items to users based on the preferences and behaviors of other users. The algorithm identifies users who have similar preferences and behaviors and recommends items that these users have consumed or rated highly.")
+
     #st.write("## Algorithms")
     #st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=650)
     #st.write("### 1. Content-based Filtering")
