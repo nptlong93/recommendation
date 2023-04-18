@@ -64,7 +64,7 @@ st.title("Data Science Project")
 with st.sidebar:
     choice = option_menu(
         menu_title="Menu",
-        options=["Project Objective", "Content-based Filtering", "Collaborative Filtering"],
+        options=["Project Overview", "Content-based Filtering", "Collaborative Filtering"],
         icons=["book", "book", "book"],
         menu_icon="cast",
     )
