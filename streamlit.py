@@ -68,10 +68,9 @@ with st.sidebar:
         icons=["book", "book", "book"],
         menu_icon="cast",
     )
-if choice == 'Project Objective':    
-    st.write("## Project Overview")
+if choice == 'Project Overview':    
+    st.write("### Project Objective")
     st.image("https://golocad.com/wp-content/uploads/2022/11/shopee-logistics-engine.webp", width=650)
-    st.write("#### Project Objective")
     st.write("This project is to build a recommendation system for Shopee.vn - an e-commerce website. The recommendation system will be based on the content of the product and the user's rating history. The recommendation system will be built using two methods: Content-based Filtering and Collaborative Filtering.")
 
     st.write("## Algorithms")
