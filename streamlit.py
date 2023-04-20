@@ -163,7 +163,7 @@ if choice == 'Project Overview':
     st.write("Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
     htp3= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_result.png"
     st.image(htp3, caption ='Cosine similarity and Gensim recommendation results ' ,width=650)
-    st.write("Conclude: Cosine similarity was chosen for further GUI Built-in")
+    st.write("Conclusion: Both methods shows a good result regarding to the mutual products and the performance. Cosine similarity was chosen for further GUI Built-in")
 
 
     st.write("#### GUI Built-in")
