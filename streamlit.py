@@ -186,6 +186,9 @@ if choice == 'Project Overview':
     st.image(htp6, caption ='RMSE result' ,width=700)
     st.write("Conclusion: ALS was chosen for further GUI Built-in")
 
+    st.write("Student: Nguyen Pham Thang Long")
+    st.write("This project is executed, courtesy of Mrs. Khuay Thuy Phuong")
+
 elif choice == 'Content-based Filtering_1':
     st.subheader("Case 01: Select product to recommend")
     selected_product = st.selectbox('Select a product', data['product_name'])
