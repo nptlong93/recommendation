@@ -198,101 +198,104 @@ if choice == 'Project Overview':
 elif choice == 'Content-based Filtering_1':
     st.subheader("Case 01: Select product to recommend")
     selected_product = st.selectbox('Select a product', data['product_name'])
-    # Show product name
-    st.write("### Your choice:",selected_product)
-    # Show recommended products
-    st.write("#### Recommended products: ")
-    # Get index of product
-    idx = data[data['product_name'] == selected_product].index[0]
-    # Get list of similar products
-    similar_products = list(enumerate(model[idx]))
-    # Sort list of similar products
-    sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
-    # Show random 5 similar products
-    lst = [i[0] for i in sorted_similar_products[1:9]]
-    # Create a seleted image
-    selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
-    # Show the product info
-    st.write("#### In this product:") 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.image(selected_image, width=270)
-    with col2:
-        st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
-        st.write("{:,} VND".format(data['price'][data[data['image'] == selected_image].index[0]]))
-        st.write(star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
-        #st.write("###### Description:", data['description'][data[data['image'] == selected_image].index[0]])
-    # Show recommended products
-    st.write("#### You might also like: ")
-    # Get list of similar products based on selected image
-    idx = data[data['image'] == selected_image].index[0]
-    similar_products = list(enumerate(model[idx]))
-    # Sort list of similar products
-    sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
-    # Show random 5 similar products
-    for i in sorted_similar_products[1:6]:
-        # Get index of similar product
-        idx = i[0]
-        # Get product name   
-        product_name = data.iloc[idx]['product_name']
-        # Get product price
-        product_price = data.iloc[idx]['price']
-        # Get product rating
-        product_rating = data.iloc[idx]['rating']
-        # Get product image
-        data[['image']] = data[['image']].astype(str)
-        product_image = data.iloc[idx]['image']
-        # Align 2 columns
+    # Create a button
+    button = st.button("Recommend")
+    if button:
+        # Show product name
+        st.write("### Your choice:",selected_product)
+        # Show recommended products
+        st.write("#### Recommended products: ")
+        # Get index of product
+        idx = data[data['product_name'] == selected_product].index[0]
+        # Get list of similar products
+        similar_products = list(enumerate(model[idx]))
+        # Sort list of similar products
+        sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
+        # Show random 5 similar products
+        lst = [i[0] for i in sorted_similar_products[1:9]]
+        # Create a seleted image
+        selected_image = image_select(label= "Select image",images=[data['image'][i] for i in lst], captions=[data['product_name'][i] for i in lst], use_container_width = False)
+        # Show the product info
+        st.write("#### In this product:") 
         col1, col2 = st.columns(2)
         with col1:
-            # Col 1 show product image
-            st.image(product_image, width= 175 )
+            st.image(selected_image, width=270)
         with col2:
-            # Show product name with big bold font and link
-            st.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
-            # Show product price
-            st.write("{:,} VND".format(product_price))
-            # Show star rating
-            st.write(star_rating(product_rating))
+            st.write("[{}]({})".format(data['product_name'][data[data['image'] == selected_image].index[0]], data.iloc[idx]['link']))
+            st.write("{:,} VND".format(data['price'][data[data['image'] == selected_image].index[0]]))
+            st.write(star_rating(data['rating'][data[data['image'] == selected_image].index[0]]))
+            #st.write("###### Description:", data['description'][data[data['image'] == selected_image].index[0]])
+        # Show recommended products
+        st.write("#### You might also like: ")
+        # Get list of similar products based on selected image
+        idx = data[data['image'] == selected_image].index[0]
+        similar_products = list(enumerate(model[idx]))
+        # Sort list of similar products
+        sorted_similar_products = sorted(similar_products, key=lambda x: x[1], reverse=True)
+        # Show random 5 similar products
+        for i in sorted_similar_products[1:6]:
+            # Get index of similar product
+            idx = i[0]
+            # Get product name   
+            product_name = data.iloc[idx]['product_name']
+            # Get product price
+            product_price = data.iloc[idx]['price']
+            # Get product rating
+            product_rating = data.iloc[idx]['rating']
+            # Get product image
+            data[['image']] = data[['image']].astype(str)
+            product_image = data.iloc[idx]['image']
+            # Align 2 columns
+            col1, col2 = st.columns(2)
+            with col1:
+                # Col 1 show product image
+                st.image(product_image, width= 175 )
+            with col2:
+                # Show product name with big bold font and link
+                st.write("[{}]({})".format(product_name, data.iloc[idx]['link']))
+                # Show product price
+                st.write("{:,} VND".format(product_price))
+                # Show star rating
+                st.write(star_rating(product_rating))
 
 elif choice == 'Content-based Filtering_2':
     st.subheader("Case 02: Keyword to recommend")
     # Let user text input 
     text_input = st.text_input("You are looking for:")
     # Create a button
-    # button = st.button('Search')
-    # # If button is clicked, search for user
-    # if button:
+    button = st.button('Search')
+    # If button is clicked, search for user
+    if button:
     # Preprocess text input by clean_text function
-    text_input = clean_text(text_input)
-    # Get list of similar products based on text input
-    similar_products = find_similar_products(text_input,data['name_description_wt'])
-    similar_products = get_similar_product_names(similar_products)
-    # Get index list of similar products
-    idx = [data[data['product_name'] == i].index[0] for i in similar_products]
-    # Show 5 similar products
-    for i in idx[:5]:
-        # Get product name   
-        product_name = data.iloc[i]['product_name']
-        # Get product price
-        product_price = data.iloc[i]['price']
-        # Get product rating
-        product_rating = data.iloc[i]['rating']
-        # Get product image
-        data[['image']] = data[['image']].astype(str)
-        product_image = data.iloc[i]['image']
-        # Align 2 columns
-        col1, col2 = st.columns(2)
-        with col1:
-            # Col 1 show product image
-            st.image(product_image, width= 175 )
-        with col2:
-            # Show product name with big bold font and link
-            st.write("[{}]({})".format(product_name, data.iloc[i]['link']))
-            # Show product price
-            st.write("{:,} VND".format(product_price))
-            # Show star rating
-            st.write(star_rating(product_rating))
+        text_input = clean_text(text_input)
+        # Get list of similar products based on text input
+        similar_products = find_similar_products(text_input,data['name_description_wt'])
+        similar_products = get_similar_product_names(similar_products)
+        # Get index list of similar products
+        idx = [data[data['product_name'] == i].index[0] for i in similar_products]
+        # Show 5 similar products
+        for i in idx[:5]:
+            # Get product name   
+            product_name = data.iloc[i]['product_name']
+            # Get product price
+            product_price = data.iloc[i]['price']
+            # Get product rating
+            product_rating = data.iloc[i]['rating']
+            # Get product image
+            data[['image']] = data[['image']].astype(str)
+            product_image = data.iloc[i]['image']
+            # Align 2 columns
+            col1, col2 = st.columns(2)
+            with col1:
+                # Col 1 show product image
+                st.image(product_image, width= 175 )
+            with col2:
+                # Show product name with big bold font and link
+                st.write("[{}]({})".format(product_name, data.iloc[i]['link']))
+                # Show product price
+                st.write("{:,} VND".format(product_price))
+                # Show star rating
+                st.write(star_rating(product_rating))
     
 elif choice == 'Collaborative Filtering':
     st.subheader("Collaborative Filtering")
