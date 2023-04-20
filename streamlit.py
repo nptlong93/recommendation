@@ -129,12 +129,12 @@ with st.sidebar:
     )
 if choice == 'Project Overview':    
     st.write("### Project Objective")
-    st.image("https://golocad.com/wp-content/uploads/2022/11/shopee-logistics-engine.webp", width=650)
+    st.image("https://golocad.com/wp-content/uploads/2022/11/shopee-logistics-engine.webp", width=750)
     st.write("This project is to build a recommendation system for Shopee.vn, an e-commerce website. The recommendation system will be based on the content of the product and the user's rating history.")
     st.write("The recommendation system will be built using two methods: Content-based Filtering and Collaborative Filtering.")
     st.write("1. Content-based Filtering: recommends items to users based on their similarity to the previously searched items.")
     st.write("2. Collaborative Filtering: recommends items to users based on the preferences and behaviors of other users. The algorithm identifies users who have similar preferences and behaviors and recommends items that these users have consumed or rated highly.")
-    st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=650)
+    st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=750)
     
     st.write("### Case 01: Content-based Filtering")
     st.write("#### Understand the Dataset")
@@ -143,18 +143,20 @@ if choice == 'Project Overview':
     
     st.write("#### Preprocessing data")
     st.write("The data is then cleaned and preprocessed using the Python library Pandas, underthesea")
-    st.write("1. Processing raw data: Remove unnecessary phrases, Lowercase all words, Remove special characters, Replace emoji/teencode with text, punctuations with space, Replace multiple spaces with single space,.etc")
-    st.write("2. Standardizing Vietnamese unicode")
+    st.write("1. Process raw data: Remove unnecessary phrases, Lowercase all words, Remove special characters, Replace emoji/teencode with text, punctuations with space, Replace multiple spaces with single space,.etc")
+    st.write("2. Standardize Vietnamese unicode")
     st.write("3. Tokenization Vietnamese text using underthesea")
     st.write("4. Remove stop words")
+    htp0 = "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_text_processed.png"
+    st.image(htp0, caption ='Preprocessing data example' ,width=750)
 
     st.write("#### EDA data")
     st.write("The data is then analyzed using the Pandas Profiling library")
     htp = "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_EDA.png"
-    st.image(htp, caption ='Duplicated product id in the dataset' ,width=650)
+    st.image(htp, caption ='Duplicated product id in the dataset' ,width=750)
     st.write("=> Remove the duplicate and null values in the dataset")
     htp2= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_Sub_cat.png"
-    st.image(htp2, caption ='Bar chart of products in sub category' ,width=650)
+    st.image(htp2, caption ='Bar chart of products in sub category' ,width=750)
     st.write("=> Balance the data by selecting 500 products from each sub category")
 
     st.write("#### Algorithms")
@@ -162,11 +164,8 @@ if choice == 'Project Overview':
     st.write("1. Gensim - a Python library for topic modeling, document indexing, and similarity retrieval with large corpora.")
     st.write("2. Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
     htp3= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_result.png"
-    st.image(htp3, caption ='Cosine similarity and Gensim recommendation results ' ,width=650)
+    st.image(htp3, caption ='Cosine similarity and Gensim recommendation results ' ,width=750)
     st.write("Conclusion: Both methods show a good results regarding to the mutual products and the performance. Cosine similarity was chosen for further GUI Built-in")
-
-
-    st.write("#### GUI Built-in")
 
     st.write("#### Case 02: Collaborative Filtering")
     st.write("#### Understand the Dataset")
