@@ -151,7 +151,8 @@ if choice == 'Project Overview':
     st.write("#### EDA data")
     st.write("The data is then analyzed using the Pandas Profiling library")
     st.write("The data profiling result is shown below:")
-    #link
+    # insert html
+    st.image("https://github.com/nptlong93/recommendation/blob/main/Content_based_EDA.png", width=650)
 
     st.write("#### Algorithms")
     st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
