@@ -160,7 +160,7 @@ if choice == 'Project Overview':
     st.write("=> Balance the data by selecting 500 products from each sub category")
 
     st.write("#### Algorithms and Results")
-    st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
+    st.write("For content-based filtering, Gensim and Cosine similarity measures are used.")
     st.write("1. Gensim - a Python library for topic modeling, document indexing, and similarity retrieval with large corpora.")
     st.write("2. Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
     htp3= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_result.png"
@@ -181,15 +181,18 @@ if choice == 'Project Overview':
     st.write("=> Matrix sparsity: The matrix sparsity is 99.9%")
 
     st.write("#### Algorithms and Results")
-    st.write("For collaborative filtering, Alternating least squares (ALS) was used.")
+    st.write("For collaborative filtering, Alternating least squares (ALS) is used.")
     htp6= "https://raw.githubusercontent.com/nptlong93/recommendation/main/RMSE_collab.JPG"
     st.image(htp6, caption ='RMSE result' ,width=700)
-    st.write("Conclusion: ALS is used for further GUI Built-in")
+    st.write("Conclusion: RMSE result is good in term rating of 5. ALS is used for further GUI Built-in")
     st.write("---"*40)
 
-
-    st.write("Student: Nguyen Pham Thang Long")
-    st.write("This project is executed, courtesy of Mrs. Khuay Thuy Phuong")
+    # Write about the author in italics
+    st.write("### About the author")
+    st.write("Student: _Nguyen Pham Thang Long_")
+    st.write("This project is executed, courtesy of _Mrs. Khuay Thuy Phuong_")
+    # st.write("Student: Nguyen Pham Thang Long")
+    # st.write("This project is executed, courtesy of Mrs. Khuay Thuy Phuong")
 
 elif choice == 'Content-based Filtering_1':
     st.subheader("Case 01: Select product to recommend")
