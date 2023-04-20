@@ -159,7 +159,7 @@ if choice == 'Project Overview':
     st.image(htp2, caption ='Bar chart of products in sub category' ,width=700)
     st.write("=> Balance the data by selecting 500 products from each sub category")
 
-    st.write("#### Algorithms")
+    st.write("#### Algorithms and Results")
     st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
     st.write("1. Gensim - a Python library for topic modeling, document indexing, and similarity retrieval with large corpora.")
     st.write("2. Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
@@ -173,17 +173,18 @@ if choice == 'Project Overview':
     st.write("The data is collected from the Shopee.vn.")
     st.write("#### Preprocessing data")
     st.write("The data is then cleaned and preprocessed using the Python library Pandas")
-    st.write("1. Processing the unbalanced data: User 199 is way more active than other users. Therefore, the data is balanced by reduced the data of user 199.")
-    st.write("2. ")
+    htp4= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Collab_rating_EDA.JPG"
+    st.image(htp4, caption ='Explore the dataset' ,width=700)
+    st.write("=> Processing the unbalanced data: User 199 is way more active than other users. Therefore, the data is balanced by reduced the data of user 199.")
+    htp5= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Collab_EDA.JPG"
+    st.image(htp5, caption ='Maxtrix sparsity' ,width=700)
+    st.write("=> Matrix sparsity: The matrix sparsity is 99.9%")
 
-    st.write("#### Algorithms")
+    st.write("#### Algorithms and Results")
     st.write("For collaborative filtering, Alternating least squares (ALS) was used.")
-    st.write("ALS")
-    # image
-    # RMSE
-    st.write("Conclude: ALS was chosen for further GUI Built-in")
-
-    st.write("#### GUI Built-in")
+    htp6= "https://raw.githubusercontent.com/nptlong93/recommendation/main/RMSE_collab.JPG"
+    st.image(htp6, caption ='RMSE result' ,width=700)
+    st.write("Conclusion: ALS was chosen for further GUI Built-in")
 
 elif choice == 'Content-based Filtering_1':
     st.subheader("Case 01: Select product to recommend")
