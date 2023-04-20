@@ -184,7 +184,7 @@ if choice == 'Project Overview':
     st.write("For collaborative filtering, Alternating least squares (ALS) was used.")
     htp6= "https://raw.githubusercontent.com/nptlong93/recommendation/main/RMSE_collab.JPG"
     st.image(htp6, caption ='RMSE result' ,width=700)
-    st.write("Conclusion: ALS was chosen for further GUI Built-in")
+    st.write("Conclusion: ALS is used for further GUI Built-in")
     st.write("---"*40)
 
 
