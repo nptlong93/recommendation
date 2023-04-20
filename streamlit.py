@@ -150,9 +150,12 @@ if choice == 'Project Overview':
 
     st.write("#### EDA data")
     st.write("The data is then analyzed using the Pandas Profiling library")
-    st.write("The data profiling result is shown below:")
     htp = "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_EDA.png"
-    st.image(htp, caption ='logo' ,width=650)
+    st.image(htp, caption ='Duplicated product id in the dataset' ,width=650)
+    st.write(" Remove the duplicate and null values in the dataset")
+    htp2= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_Sub_cat.png"
+    st.image(htp2, caption ='Bar chart of products in sub category' ,width=650)
+    st.write("Balance the data by selecting 500 products from each sub category")
 
     st.write("#### Algorithms")
     st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
