@@ -185,6 +185,8 @@ if choice == 'Project Overview':
     htp6= "https://raw.githubusercontent.com/nptlong93/recommendation/main/RMSE_collab.JPG"
     st.image(htp6, caption ='RMSE result' ,width=700)
     st.write("Conclusion: ALS was chosen for further GUI Built-in")
+    st.write("---"*40)
+
 
     st.write("Student: Nguyen Pham Thang Long")
     st.write("This project is executed, courtesy of Mrs. Khuay Thuy Phuong")
