@@ -159,11 +159,11 @@ if choice == 'Project Overview':
 
     st.write("#### Algorithms")
     st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
-    st.write("Gensim - a Python library for topic modeling, document indexing, and similarity retrieval with large corpora.")
-    st.write("Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
+    st.write("1. Gensim - a Python library for topic modeling, document indexing, and similarity retrieval with large corpora.")
+    st.write("2. Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
     htp3= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_result.png"
     st.image(htp3, caption ='Cosine similarity and Gensim recommendation results ' ,width=650)
-    st.write("Conclusion: Both methods shows a good result regarding to the mutual products and the performance. Cosine similarity was chosen for further GUI Built-in")
+    st.write("Conclusion: Both methods show a good results regarding to the mutual products and the performance. Cosine similarity was chosen for further GUI Built-in")
 
 
     st.write("#### GUI Built-in")
