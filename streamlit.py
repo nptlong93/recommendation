@@ -138,7 +138,7 @@ if choice == 'Project Overview':
     
     st.write("### Case 01: Content-based Filtering")
     st.write("#### Understand the Dataset")
-    st.write("The data used in this case is the product data of Shopee.vn. The data contains 4,000 products with 8 attributes: product_id, product_name, price, rating, link, category, image, description.")
+    st.write("The data used in this case is the product data of Shopee.vn. The data contains 49,653 products with 9 attributes: product_id, product_name, price, rating, link, category, sub-category, image, description.")
     st.write("The data is collected from the Shopee.vn.")
     
     st.write("#### Preprocessing data")
@@ -152,18 +152,19 @@ if choice == 'Project Overview':
     st.write("The data is then analyzed using the Pandas Profiling library")
     htp = "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_EDA.png"
     st.image(htp, caption ='Duplicated product id in the dataset' ,width=650)
-    st.write(" Remove the duplicate and null values in the dataset")
+    st.write("=> Remove the duplicate and null values in the dataset")
     htp2= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_Sub_cat.png"
     st.image(htp2, caption ='Bar chart of products in sub category' ,width=650)
-    st.write("Balance the data by selecting 500 products from each sub category")
+    st.write("=> Balance the data by selecting 500 products from each sub category")
 
     st.write("#### Algorithms")
     st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
-    st.write("Gensim")
-    # image
-    st.write("Cosine similarity")
-    # image
+    st.write("Gensim - a Python library for topic modeling, document indexing, and similarity retrieval with large corpora.")
+    st.write("Cosine similarity - a mathematical measure that calculates the similarity between two non-zero vectors of an inner product space by measuring the cosine of the angle between them.")
+    htp3= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Content_based_result.png"
+    st.image(htp3, caption ='Cosine similarity and Gensim recommendation results ' ,width=650)
     st.write("Conclude: Cosine similarity was chosen for further GUI Built-in")
+
 
     st.write("#### GUI Built-in")
 
