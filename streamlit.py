@@ -9,7 +9,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from streamlit_image_select import image_select
 import warnings
-#import PIL.Image as Image
+import re
+
 warnings.filterwarnings("ignore")
 
 # Optimize loading data and model by using cache
@@ -28,8 +29,66 @@ def load_data():
 
 # Optimize running model by using cache
 @st.cache_resource
+def clean_text(text):
+    text_clean = str(text).lower()
+    # Loai bo thong tin lien quan den chi tiet nhu xuat xu, danh muc, kho hang
+    if "THÔNG TIN SẢN PHẨM\n" in text_clean:
+        text_clean = text_clean[text_clean.index("THÔNG TIN SẢN PHẨM \n"):]
+    elif "MÔ TẢ SẢN PHẨM\n" in text_clean:
+        text_clean = text_clean[text_clean.index("MÔ TẢ SẢN PHẨM\n"):]
+    elif "\n\n" in text_clean:
+        text_clean = text_clean[text_clean.index("\n\n"):]
+    elif "\nGửi từ\n" in text_clean:
+        text_clean = text_clean[text_clean.index("\nGửi từ\n"):]
+
+    # loai bo phan size
+    text_clean = re.sub(r"\nsize[^\n]*", "", text_clean)
+    # loai bo cac hashtag
+    text_clean = re.sub(r"#[^#]*", "", text_clean)
+    # loai bo cac ky tu khong hop le
+    text_clean = re.sub(r"\n", " ", text_clean)
+    # loai bo cac ky tu khong phai la chu hoac so
+    text_clean = re.sub(r"[^\w\s]+", " ", text_clean)
+    # loai bo cac tu khong can thiet
+    text_clean = re.sub(r'\b[smlx]{1,4}\b', '', text_clean)
+    text_clean = re.sub(r'\b\d+[kgcm]*\b', '', text_clean)
+    # loai bo khang trang thua
+    text_clean = re.sub('\s+', ' ', text_clean)
+    # loai bo cac ky tu don
+    text_clean = re.sub(r"\b[a-zA-Z]\b", "", text_clean)
+    # loai bo cac chu so
+    text_clean = re.sub(r"\d+", "", text_clean)
+    # xu ly khoang trang thua
+    text_clean = re.sub(r"\s+", " ", text_clean)
+    return text_clean
+
+def find_similar_products(keyword, product_descriptions):
+    # Create a TfidfVectorizer object to convert product descriptions into a numerical representation
+    vectorizer = TfidfVectorizer()
+    
+    # Fit and transform the product descriptions into a tf-idf matrix
+    tfidf_matrix = vectorizer.fit_transform(product_descriptions)
+    
+    # Convert the keyword into a tf-idf vector
+    keyword_tfidf = vectorizer.transform([keyword])
+    
+    # Calculate cosine similarity between the keyword and all product descriptions
+    cosine_similarities = cosine_similarity(keyword_tfidf, tfidf_matrix).flatten()
+    
+    # Sort the indices of the products based on their cosine similarity with the keyword
+    similar_product_indices = np.argsort(cosine_similarities)[::-1][:10]
+    
+    # Return the top 10 most similar products
+    return [product_descriptions[i] for i in similar_product_indices]
+
+# Get the product names corresponding to the product descriptions
+def get_similar_product_names(similar_products):
+    similar_product_names = []
+    for product in similar_products:
+        similar_product_names.append(data.loc[data['name_description_wt'] == product]['product_name'].tolist()[0])
+    return similar_product_names
+
 def run_model(data):
-    # 2.2. Remove missing values
     tf = TfidfVectorizer(analyzer='word')
     tfidf_matrix = tf.fit_transform(data.name_description_wt)
     model = cosine_similarity(tfidf_matrix, tfidf_matrix)
@@ -64,8 +123,8 @@ st.title("Data Science Project")
 with st.sidebar:
     choice = option_menu(
         menu_title="Menu",
-        options=["Project Overview", "Content-based Filtering", "Collaborative Filtering"],
-        icons=["book", "book", "book"],
+        options=["Project Overview", "Content-based Filtering_1", "Content-based Filtering_2", "Collaborative Filtering"],
+        icons=["book", "book", "book", "book"],
         menu_icon="cast",
     )
 if choice == 'Project Overview':    
@@ -75,10 +134,11 @@ if choice == 'Project Overview':
     st.write("The recommendation system will be built using two methods: Content-based Filtering and Collaborative Filtering.")
     st.write("1. Content-based Filtering: recommends items to users based on their similarity to the previously searched items.")
     st.write("2. Collaborative Filtering: recommends items to users based on the preferences and behaviors of other users. The algorithm identifies users who have similar preferences and behaviors and recommends items that these users have consumed or rated highly.")
+    st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=650)
     
     st.write("### Case 01: Content-based Filtering")
     st.write("#### Understand the Dataset")
-    st.write("The data used in this project is the product data of Shopee.vn. The data contains 4,000 products with 8 attributes: product_id, product_name, price, rating, link, category, image, description.")
+    st.write("The data used in this case is the product data of Shopee.vn. The data contains 4,000 products with 8 attributes: product_id, product_name, price, rating, link, category, image, description.")
     st.write("The data is collected from the Shopee.vn.")
     
     st.write("#### Preprocessing data")
@@ -88,27 +148,42 @@ if choice == 'Project Overview':
     st.write("3. Tokenization Vietnamese text using underthesea")
     st.write("4. Remove stop words")
 
+    st.write("#### EDA data")
+    st.write("The data is then analyzed using the Pandas Profiling library")
+    st.write("The data profiling result is shown below:")
+    #link
+
     st.write("#### Algorithms")
-    st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=650)
-
     st.write("For content-based filtering, Gensim and Cosine similarity measures were used.")
+    st.write("Gensim")
+    # image
+    st.write("Cosine similarity")
+    # image
+    st.write("Conclude: Cosine similarity was chosen for further GUI Built-in")
 
-    st.write("2. Collaborative Filtering: recommends items to users based on the preferences and behaviors of other users. The algorithm identifies users who have similar preferences and behaviors and recommends items that these users have consumed or rated highly.")
+    st.write("#### GUI Built-in")
 
-    #st.write("## Algorithms")
-    #st.image("https://co-libry.com/wp-content/uploads/2020/05/Recommendation-engines-Co-libry-E-commerce-1.png", width=650)
-    #st.write("### 1. Content-based Filtering")
-    #st.write("Content-based filtering is a recommender system algorithm that recommends items to users based on their similarity to previously consumed items. The algorithm analyzes the attributes of items that a user has interacted with in the past and finds other items with similar attributes. The attributes can include features such as genre, language, author, artist, or any other relevant metadata associated with the items.\nThe content-based filtering algorithm operates on the principle that users who have shown a preference for certain items in the past are likely to be interested in other items with similar attributes. For example, if a user has shown a preference for movies with science fiction genre, the algorithm can recommend other science fiction movies to the user.\nThe content-based filtering algorithm is widely used in e-commerce, media streaming platforms, and online advertising to provide personalized recommendations to users. It is relatively simple to implement and can work well in cases where there is a clear relationship between the attributes of items and user preferences.\nOne of the limitations of content-based filtering is that it tends to recommend items that are similar to what a user has already consumed, which may not always result in serendipitous discovery. Additionally, the algorithm may struggle to recommend items with features that are not explicitly specified in the item metadata.")
-    #st.write("####  Cosine Similarity")
+    st.write("#### Case 02: Collaborative Filtering")
+    st.write("#### Understand the Dataset")
+    st.write("The data used in this case is the user's rating of the products on Shopee.vn. The data contains 4,000 rating with 4 attributes: product_id, user_id, user, rating.")
+    st.write("The data is collected from the Shopee.vn.")
 
-    #st.write("Cosine similarity is a measure of similarity between two vectors that is widely used in content-based filtering algorithms. It measures the cosine of the angle between two vectors in a high-dimensional space.\nIn content-based filtering, cosine similarity is used to measure the similarity between the attributes of two items. The algorithm converts the attributes of each item into a vector, where each dimension of the vector represents a specific attribute. The cosine similarity between two items is then calculated as the dot product of the two vectors divided by the product of their magnitudes.\nCosine similarity ranges from -1 to 1, where a value of 1 indicates that the two items are identical, a value of 0 indicates that the two items are orthogonal, and a value of -1 indicates that the two items are diametrically opposed.\nCosine similarity is widely used in content-based filtering because it is computationally efficient and can work well in cases where the dimensionality of the attribute space is high. Additionally, it can handle cases where the magnitude of the attribute vectors varies widely between items.\nOne limitation of cosine similarity is that it does not take into account the semantic meaning of the attributes. For example, two items may have the same attribute values but be conceptually different, such as a movie and a book with the same title. In such cases, other similarity measures that take into account the semantic meaning of the attributes may be more appropriate.")
-    #st.write("### 2. Collaborative Filtering")
-    #st.write("Collaborative filtering is a recommender system algorithm that recommends items to users based on the preferences and behaviors of other users. The algorithm identifies users who have similar preferences and behaviors and recommends items that these users have consumed or rated highly.\nIn collaborative filtering, the algorithm analyzes the ratings or interactions between users and items and creates a user-item matrix. The matrix contains the ratings or interactions of each user with each item. The algorithm then identifies similar users based on their ratings or interactions and recommends items that similar users have rated highly or consumed.\nCollaborative filtering can be divided into two categories: memory-based and model-based. Memory-based collaborative filtering uses the entire user-item matrix to compute the similarity between users and recommend items. Model-based collaborative filtering uses machine learning algorithms to learn the underlying patterns in the user-item matrix and make recommendations based on these patterns.\nCollaborative filtering can work well in cases where there is a large dataset with many users and items. It can also handle cases where there is no clear relationship between the attributes of items and user preferences.\nOne limitation of collaborative filtering is the cold start problem, where it can be challenging to make recommendations for new items or new users with no or little history of interactions. Additionally, the algorithm may suffer from a popularity bias, where it recommends popular items even if they may not be the best fit for a specific user's preferences.")
-    #st.write("")
-# GUI
+    st.write("#### Preprocessing data")
+    st.write("The data is then cleaned and preprocessed using the Python library Pandas")
+    st.write("1. Processing the unbalanced data: User 199 is way more active than other users. Therefore, the data is balanced by reduced the data of user 199.")
+    st.write("2. ")
 
-elif choice == 'Content-based Filtering':
-    st.subheader("Content-based Filtering")
+    st.write("#### Algorithms")
+    st.write("For collaborative filtering, Alternating least squares (ALS) was used.")
+    st.write("ALS")
+    # image
+    # RMSE
+    st.write("Conclude: ALS was chosen for further GUI Built-in")
+
+    st.write("#### GUI Built-in")
+
+elif choice == 'Content-based Filtering_1':
+    st.subheader("Case 01: Select product to recommend")
     selected_product = st.selectbox('Select a product', data['product_name'])
     # Show product name
     st.write("### Your choice:",selected_product)
@@ -167,6 +242,45 @@ elif choice == 'Content-based Filtering':
             # Show star rating
             st.write(star_rating(product_rating))
 
+elif choice == 'Content-based Filtering_2':
+    st.subheader("Case 02: Keyword to recommend")
+    # Let user text input 
+    text_input = st.text_input("You are looking for:")
+    # Create a button
+    # button = st.button('Search')
+    # # If button is clicked, search for user
+    # if button:
+    # Preprocess text input by clean_text function
+    text_input = clean_text(text_input)
+    # Get list of similar products based on text input
+    similar_products = find_similar_products(text_input,data['name_description_wt'])
+    similar_products = get_similar_product_names(similar_products)
+    # Get index list of similar products
+    idx = [data[data['product_name'] == i].index[0] for i in similar_products]
+    # Show 5 similar products
+    for i in idx[:5]:
+        # Get product name   
+        product_name = data.iloc[i]['product_name']
+        # Get product price
+        product_price = data.iloc[i]['price']
+        # Get product rating
+        product_rating = data.iloc[i]['rating']
+        # Get product image
+        data[['image']] = data[['image']].astype(str)
+        product_image = data.iloc[i]['image']
+        # Align 2 columns
+        col1, col2 = st.columns(2)
+        with col1:
+            # Col 1 show product image
+            st.image(product_image, width= 175 )
+        with col2:
+            # Show product name with big bold font and link
+            st.write("[{}]({})".format(product_name, data.iloc[i]['link']))
+            # Show product price
+            st.write("{:,} VND".format(product_price))
+            # Show star rating
+            st.write(star_rating(product_rating))
+    
 elif choice == 'Collaborative Filtering':
     st.subheader("Collaborative Filtering")
     # Search based on user input 
