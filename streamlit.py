@@ -176,6 +176,7 @@ if choice == 'Project Overview':
     htp4= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Collab_rating_EDA.JPG"
     st.image(htp4, caption ='Explore the dataset' ,width=700)
     st.write("=> Processing the unbalanced data: User 199 is way more active than other users. Therefore, the data is balanced by reduced the data of user 199.")
+    st.write("###### Matrix sparsity check")
     htp5= "https://raw.githubusercontent.com/nptlong93/recommendation/main/Collab_EDA.JPG"
     st.image(htp5, caption ='Maxtrix sparsity' ,width=700)
     st.write("=> Matrix sparsity: The matrix sparsity is 99.9%")
@@ -184,7 +185,7 @@ if choice == 'Project Overview':
     st.write("For collaborative filtering, Alternating least squares (ALS) is used.")
     htp6= "https://raw.githubusercontent.com/nptlong93/recommendation/main/RMSE_collab.JPG"
     st.image(htp6, caption ='RMSE result' ,width=700)
-    st.write("Conclusion: RMSE result is good in term rating of 5. ALS is used for further GUI Built-in")
+    st.write("Conclusion: RMSE result is good in term of 5-star rating. ALS is used for further GUI Built-in")
     st.write("---"*40)
 
     # Write about the author in italics
