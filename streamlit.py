@@ -20,7 +20,7 @@ def load_data():
     data = pd.read_csv("Products_ThoiTrangNam_clean_new_2.csv", encoding='utf-8')
     
     # Load merge.csv
-    data2 = pd.read_csv("merge_1.csv", encoding='utf-8')
+    data2 = pd.read_csv("merge.csv", encoding='utf-8')
 
     # Load shopee_1.jpg
     #image1 = Image.open("shopee_1.jpg")
